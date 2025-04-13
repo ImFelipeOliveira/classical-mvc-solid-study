@@ -141,6 +141,9 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+# Database folder
+db
+
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
