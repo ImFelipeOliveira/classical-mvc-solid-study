@@ -17,7 +17,7 @@ export class ProductController implements ControllerInteface {
 
     const service = ProductServiceImplementation.build(this.productRepository);
 
-    const output = service.create(name, price);
+    const output = await service.create(name, price);
 
     if (!output) {
       res.status(404).json({
@@ -25,9 +25,7 @@ export class ProductController implements ControllerInteface {
       });
     }
 
-    res.status(201).json({
-      ...output,
-    });
+    res.status(201).json({ ...output });
   }
 
   async list(req: Request, res: Response) {
