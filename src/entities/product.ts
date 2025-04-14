@@ -17,6 +17,10 @@ export class Product {
     });
   }
 
+  public static with(props: ProductProps) {
+    return new Product(props);
+  }
+
   public get id() {
     return this.props.id;
   }
