@@ -32,7 +32,6 @@ async function main() {
   api.addPatchRoute(
     "/products/:id/sell",
     async (req: Request, res: Response) => {
-      console.log(req.body);
       await productController.sell(req, res);
     }
   );
