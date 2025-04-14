@@ -29,4 +29,5 @@ export interface ProductService {
   buy(id: string, amount: number): Promise<BuyOutputDTO>;
   list(): Promise<ListOutputDTO>;
   create(name: string, price: number): Promise<CreateOutputDTO>;
+  delete(id: string): Promise<string>;
 }

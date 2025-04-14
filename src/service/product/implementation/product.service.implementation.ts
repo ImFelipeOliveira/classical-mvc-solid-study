@@ -11,7 +11,7 @@ import {
 export class ProductServiceImplementation implements ProductService {
   private constructor(readonly repository: ProductRepository) {}
 
-  public build(repository: ProductRepository) {
+  public static build(repository: ProductRepository) {
     return new ProductServiceImplementation(repository);
   }
 
@@ -82,5 +82,11 @@ export class ProductServiceImplementation implements ProductService {
     };
 
     return output;
+  }
+
+  async delete(id: string): Promise<string> {
+    await this.repository.delete(id);
+
+    return "delete succefuly";
   }
 }
