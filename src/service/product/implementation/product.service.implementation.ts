@@ -1,6 +1,8 @@
+import { Product } from "../../../entities/product";
 import { ProductRepository } from "../../../repositories/product/product.repository";
 import {
   BuyOutputDTO,
+  CreateOutputDTO,
   ListOutputDTO,
   ProductService,
   SellOutputDTO,
@@ -9,7 +11,7 @@ import {
 export class ProductServiceImplementation implements ProductService {
   private constructor(readonly repository: ProductRepository) {}
 
-  static build(repository: ProductRepository) {
+  public build(repository: ProductRepository) {
     return new ProductServiceImplementation(repository);
   }
 
@@ -62,6 +64,21 @@ export class ProductServiceImplementation implements ProductService {
           balance: p.quantity,
         };
       }),
+    };
+
+    return output;
+  }
+
+  async create(name: string, price: number): Promise<CreateOutputDTO> {
+    const product = Product.create(name, price);
+
+    await this.repository.save(product);
+
+    const output: CreateOutputDTO = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      balance: product.price,
     };
 
     return output;
