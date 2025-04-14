@@ -44,10 +44,11 @@ export class ProductController implements ControllerInteface {
   }
 
   async buy(req: Request, res: Response) {
-    const { id, amount } = req.params;
+    const { id } = req.params;
+    const { amount } = req.body;
 
     const service = ProductServiceImplementation.build(this.productRepository);
-    const output = await service.buy(id, Number(amount));
+    const output = await service.buy(id, amount);
 
     if (!output) {
       res.status(404).json({
@@ -65,7 +66,7 @@ export class ProductController implements ControllerInteface {
     const { amount } = req.body;
 
     const service = ProductServiceImplementation.build(this.productRepository);
-    const output = await service.sell(id, Number(amount));
+    const output = await service.sell(id, amount);
 
     if (!output) {
       res.status(404).json({

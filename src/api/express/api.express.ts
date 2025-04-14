@@ -42,6 +42,22 @@ export class ApiExpress implements Api {
     });
   }
 
+  public addPatchRoute(
+    path: string,
+    handle: (req: Request, res: Response) => Promise<void>
+  ) {
+    this.app.patch(path, async (req, res) => {
+      try {
+        await handle(req, res);
+      } catch (error) {
+        res.status(500).json({
+          message: "Internal server error",
+          error: error,
+        });
+      }
+    });
+  }
+
   public addDeleteRoute(
     path: string,
     handle: (req: Request, res: Response) => Promise<void>

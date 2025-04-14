@@ -22,16 +22,22 @@ async function main() {
     await productController.create(req, res);
   });
 
-  api.addPostRoute("/products/:id/buy", async (req: Request, res: Response) => {
-    await productController.buy(req, res);
-  });
+  api.addPatchRoute(
+    "/products/:id/buy",
+    async (req: Request, res: Response) => {
+      await productController.buy(req, res);
+    }
+  );
 
-  api.addPostRoute("products/:id/sell", async (req: Request, res: Response) => {
-    await productController.sell(req, res);
-  });
+  api.addPatchRoute(
+    "/products/:id/sell",
+    async (req: Request, res: Response) => {
+      console.log(req.body);
+      await productController.sell(req, res);
+    }
+  );
 
   api.addDeleteRoute("/products/:id", async (req: Request, res: Response) => {
-    const productController = ProductController.build(productRepository);
     await productController.delete(req, res);
   });
 }
