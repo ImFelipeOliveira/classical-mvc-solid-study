@@ -3,9 +3,9 @@ import { Product } from "../../../entities/product";
 import { ProductRepository } from "../product.repository";
 
 export class ProductRepositoryPrisma implements ProductRepository {
-  constructor(private readonly prisma: PrismaClient) {}
+  private constructor(private readonly prisma: PrismaClient) {}
 
-  public build(prisma: PrismaClient) {
+  public static build(prisma: PrismaClient) {
     return new ProductRepositoryPrisma(prisma);
   }
 
